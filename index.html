@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nipona's Family Daycare | Early Learning & Nurturing Care</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fffbea',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        tealBrand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        },
+                        softCoral: '#ff8a7a',
+                        softBackground: '#faf7f2',
+                    },
+                    fontFamily: {
+                        heading: ['Fredoka', 'cursive', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf7f2;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-heading {
+            font-family: 'Fredoka', cursive, sans-serif;
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+
+<body class="text-slate-700 antialiased selection:bg-tealBrand-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div
+        class="bg-tealBrand-700 text-white text-xs sm:text-sm py-2 px-4 text-center flex justify-center items-center gap-2 font-medium">
+        <i class="fa-solid fa-ribbon text-amber-300"></i>
+        <span>Approved Family Daycare Educator affiliated with <strong>Community Vision Family Daycare
+                Scheme</strong></span>
+    </div>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-100/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 to-tealBrand-500 flex items-center justify-center text-white shadow-md transform group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid fa-shapes text-2xl"></i>
+                </div>
+                <div>
+                    <span
+                        class="block text-xl sm:text-2xl font-bold font-heading text-slate-800 leading-none">Nipona's</span>
+                    <span class="text-xs sm:text-sm font-semibold text-tealBrand-600 tracking-wide uppercase">Family
+                        Daycare</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-7 font-medium text-slate-600 text-sm">
+                <a href="#about" class="hover:text-tealBrand-600 transition-colors">About & Philosophy</a>
+                <a href="#schedule" class="hover:text-tealBrand-600 transition-colors">Daily Routine</a>
+                <a href="#policies" class="hover:text-tealBrand-600 transition-colors">Fees & Policies</a>
+                <a href="#calculator" class="hover:text-tealBrand-600 transition-colors">Gap Estimator</a>
+                <a href="#testimonials" class="hover:text-tealBrand-600 transition-colors">Testimonials</a>
+                <a href="#gallery" class="hover:text-tealBrand-600 transition-colors">Gallery</a>
+                <a href="#location" class="hover:text-tealBrand-600 transition-colors">Location</a>
+                <a href="#faq" class="hover:text-tealBrand-600 transition-colors">FAQs</a>
+            </nav>
+
+            <!-- Phone CTA & Booking Button -->
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="tel:0433409574"
+                    class="flex items-center gap-2 text-slate-700 hover:text-tealBrand-600 font-semibold text-sm">
+                    <div
+                        class="w-9 h-9 rounded-full bg-tealBrand-50 text-tealBrand-600 flex items-center justify-center">
+                        <i class="fa-solid fa-phone text-xs"></i>
+                    </div>
+                    <span>0433 409 574</span>
+                </a>
+                <a href="#contact"
+                    class="bg-gradient-to-r from-tealBrand-600 to-tealBrand-500 hover:from-tealBrand-700 hover:to-tealBrand-600 text-white font-heading px-5 py-2.5 rounded-full shadow-md shadow-tealBrand-500/20 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                    Book a Tour
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn"
+                class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+                <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Nav -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="mobile-link block py-2 text-slate-700 font-medium hover:text-tealBrand-600">About &
+                Philosophy</a>
+            <a href="#schedule" class="mobile-link block py-2 text-slate-700 font-medium hover:text-tealBrand-600">Daily
+                Routine</a>
+            <a href="#policies" class="mobile-link block py-2 text-slate-700 font-medium hover:text-tealBrand-600">Fees
+                & Policies</a>
+            <a href="#calculator" class="mobile-link block py-2 text-slate-700 font-medium hover:text-tealBrand-600">Gap
+                Estimator</a>
+            <a href="#testimonials"
+                class="mobile-link block py-2 text-slate-700 font-medium hover:text-tealBrand-600">Testimonials</a>
+            <a href="#gallery"
+                class="mobile-link block py-2 text-slate-700 font-medium hover:text-tealBrand-600">Gallery</a>
+            <a href="#location"
+                class="mobile-link block py-2 text-slate-700 font-medium hover:text-tealBrand-600">Location</a>
+            <a href="#faq" class="mobile-link block py-2 text-slate-700 font-medium hover:text-tealBrand-600">FAQs</a>
+            <div class="pt-2 border-t border-slate-100 flex flex-col gap-3">
+                <a href="tel:0433409574" class="flex items-center gap-2 text-slate-800 font-semibold text-sm">
+                    <i class="fa-solid fa-phone text-tealBrand-600"></i> Call 0433 409 574
+                </a>
+                <a href="#contact"
+                    class="mobile-link bg-tealBrand-600 text-white text-center font-heading py-3 rounded-xl shadow-md">
+                    Book a Tour or Enroll
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- 1. HERO SECTION -->
+        <section
+            class="relative overflow-hidden pt-8 pb-16 lg:pt-16 lg:pb-24 bg-gradient-to-b from-amber-50/60 via-tealBrand-50/30 to-softBackground">
+            <!-- Background Decorative Blobs -->
+            <div class="absolute -top-12 -left-12 w-64 h-64 bg-amber-200/40 rounded-full blur-3xl pointer-events-none">
+            </div>
+            <div
+                class="absolute top-1/2 right-0 w-80 h-80 bg-tealBrand-200/30 rounded-full blur-3xl pointer-events-none">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 border border-amber-200 text-amber-900 text-xs sm:text-sm font-semibold shadow-xs">
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                            Enrollments Open & Tour Bookings Available
+                        </div>
+
+                        <h1
+                            class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-slate-800 tracking-tight leading-none">
+                            A Warm, Home Away From Home for <span
+                                class="text-tealBrand-600 underline decoration-amber-300 decoration-wavy decoration-4">Little
+                                Explorers</span>
+                        </h1>
+
+                        <p
+                            class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            Welcome to <strong>Nipona's Family Daycare</strong>. Providing personalized early learning,
+                            play-based exploration, and warm nurture in a safe home environment in partnership with
+                            <strong>Community Vision Family Daycare Scheme</strong>.
+                        </p>
+
+                        <!-- Key Pillars Tags -->
+                        <div
+                            class="flex flex-wrap justify-center lg:justify-start gap-3 text-xs sm:text-sm font-semibold text-slate-700 py-1">
+                            <span
+                                class="px-3.5 py-1.5 rounded-xl bg-white shadow-sm border border-slate-200/60 flex items-center gap-2">
+                                <i class="fa-solid fa-shield-heart text-tealBrand-500"></i> Qualified Educator
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-xl bg-white shadow-sm border border-slate-200/60 flex items-center gap-2">
+                                <i class="fa-solid fa-puzzle-piece text-amber-500"></i> Play-Based Learning
+                            </span>
+                            <span
+                                class="px-3.5 py-1.5 rounded-xl bg-white shadow-sm border border-slate-200/60 flex items-center gap-2">
+                                <i class="fa-solid fa-users text-rose-400"></i> Small Ratio Care
+                            </span>
+                        </div>
+
+                        <!-- Hero CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#contact"
+                                class="px-8 py-4 bg-tealBrand-600 hover:bg-tealBrand-700 text-white font-heading text-lg rounded-2xl shadow-lg shadow-tealBrand-600/30 hover:shadow-xl transition-all duration-300 text-center flex items-center justify-center gap-3">
+                                <span>Book a Tour / Inquiry</span>
+                                <i class="fa-solid fa-arrow-right text-sm"></i>
+                            </a>
+                            <a href="#calculator"
+                                class="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 font-heading text-lg rounded-2xl border border-slate-200 shadow-sm hover:shadow transition-all duration-300 text-center flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-calculator text-amber-500"></i>
+                                <span>Estimate Gap Fee</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Interactive Graphic Card -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+
+                            <div
+                                class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-amber-100 relative z-10 transform hover:-rotate-1 transition-transform duration-500">
+                                <div
+                                    class="w-full h-60 rounded-2xl bg-gradient-to-br from-amber-100 via-tealBrand-100 to-sky-100 flex flex-col items-center justify-center relative overflow-hidden group">
+                                    <svg class="w-36 h-36 text-tealBrand-600 transform group-hover:scale-110 transition-transform duration-500"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"
+                                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                        </path>
+                                    </svg>
+                                    <div
+                                        class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-xl border border-slate-100 shadow-sm text-center">
+                                        <p class="font-heading text-slate-800 font-semibold text-sm">Interactive & Safe
+                                            Home Environment</p>
+                                        <p class="text-xs text-slate-500">Tailored to every developmental milestone</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4 text-xs font-semibold text-slate-600">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center">
+                                            <i class="fa-solid fa-clock"></i>
+                                        </div>
+                                        <span>Flexible Care Hours</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-tealBrand-100 text-tealBrand-600 flex items-center justify-center">
+                                            <i class="fa-solid fa-check"></i>
+                                        </div>
+                                        <span>CCS Approved Scheme</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="absolute -bottom-4 -right-4 w-full h-full bg-gradient-to-tr from-amber-300 to-tealBrand-300 rounded-3xl -z-10 transform rotate-2">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT US & PHILOSOPHY -->
+        <section id="about" class="py-16 lg:py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span
+                        class="text-tealBrand-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-tealBrand-50 px-3 py-1 rounded-full border border-tealBrand-100">Welcome
+                        To Our Family</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">Our Core Philosophy &
+                        Caring Approach</h2>
+                    <p class="text-slate-600 mt-3 text-base sm:text-lg">Every child is unique. We nurture curious minds,
+                        encourage natural creativity, and foster strong social foundations through play.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+
+                    <div
+                        class="bg-softBackground p-8 rounded-3xl border border-amber-100/80 shadow-sm hover:shadow-md transition-shadow group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-house-chimney-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-heading text-slate-800 mb-3">Nurturing Home Atmosphere</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            A secure and comfortable home setting where children feel safe, loved, and valued as
+                            individuals. Small group sizes ensure dedicated personal attention for your little one.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-softBackground p-8 rounded-3xl border border-tealBrand-100/80 shadow-sm hover:shadow-md transition-shadow group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-tealBrand-100 text-tealBrand-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-heading text-slate-800 mb-3">Play-Based Learning & EYLF</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Following the Early Years Learning Framework (EYLF), our curriculum uses hands-on play,
+                            outdoor activity, art, and music to stimulate early literacy and social skills.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-softBackground p-8 rounded-3xl border border-sky-100 shadow-sm hover:shadow-md transition-shadow group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-heading text-slate-800 mb-3">Community Vision Partnership</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Proudly operating under <strong>Community Vision Family Daycare Scheme</strong>. We comply
+                            with all Australian early childhood regulations and safety standards.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Educator Profile Banner -->
+                <div
+                    class="mt-16 bg-gradient-to-r from-tealBrand-700 to-tealBrand-600 rounded-3xl text-white p-8 sm:p-10 shadow-lg relative overflow-hidden">
+                    <div class="grid md:grid-cols-12 gap-8 items-center relative z-10">
+                        <div class="md:col-span-3 flex justify-center">
+                            <div
+                                class="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-white/20 border-4 border-white/30 flex items-center justify-center text-5xl text-amber-300 shadow-inner">
+                                <i class="fa-solid fa-user-nurse"></i>
+                            </div>
+                        </div>
+                        <div class="md:col-span-9 space-y-3 text-center md:text-left">
+                            <span
+                                class="text-xs uppercase tracking-widest bg-amber-400 text-slate-900 font-bold px-3 py-1 rounded-full">Primary
+                                Educator</span>
+                            <h3 class="text-2xl sm:text-3xl font-bold font-heading">Nipona | Certified Early Educator
+                            </h3>
+                            <p class="text-tealBrand-100 text-sm sm:text-base leading-relaxed">
+                                "I believe early childhood is the foundation of lifelong learning. My goal is to create
+                                a warm, inclusive, and stimulating environment where every child can grow, discover, and
+                                thrive through play, kindness, and individual guidance."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. DAILY SCHEDULE & ACTIVITIES -->
+        <section id="schedule" class="py-16 lg:py-24 bg-slate-50 border-y border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span
+                        class="text-amber-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-amber-100 px-3 py-1 rounded-full">Routine
+                        & Development</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">A Typical Day at
+                        Nipona's</h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base">Click through the routine timeline buttons below
+                        to explore how we structure learning, play, meals, and rest.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+
+                    <!-- Schedule Buttons -->
+                    <div class="flex flex-wrap justify-center gap-2 mb-8 border-b border-slate-100 pb-6"
+                        id="scheduleButtons">
+                        <!-- Populated by JavaScript -->
+                    </div>
+
+                    <!-- Display Panel -->
+                    <div id="scheduleDetailCard"
+                        class="bg-amber-50/50 rounded-2xl p-6 sm:p-8 border border-amber-100/80 transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                            <div id="scheduleIcon"
+                                class="w-16 h-16 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-3xl shadow-md shrink-0">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                            <div class="text-center sm:text-left space-y-2">
+                                <div class="flex items-center justify-center sm:justify-start gap-3">
+                                    <span id="scheduleTime"
+                                        class="text-xs font-bold px-3 py-1 bg-amber-200 text-amber-900 rounded-full">8:00
+                                        AM - 9:00 AM</span>
+                                    <h3 id="scheduleTitle" class="text-2xl font-bold font-heading text-slate-800">
+                                        Arrival & Free Choice Play</h3>
+                                </div>
+                                <p id="scheduleDesc" class="text-slate-600 text-sm leading-relaxed">
+                                    Warm welcome, greeting educator and peers, settling in with quiet tabletop
+                                    activities, building blocks, or sensory play tailored to individual interests.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ADMIN & FEE POLICIES -->
+        <section id="policies" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span
+                        class="text-tealBrand-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-tealBrand-50 px-3 py-1 rounded-full border border-tealBrand-100">Clear
+                        & Transparent Care</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">Administrative & Fee
+                        Policies</h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base">Operating strictly under the Community Vision
+                        Family Daycare Scheme guidelines.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+
+                    <div
+                        class="bg-softBackground rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-xl bg-tealBrand-100 text-tealBrand-700 flex items-center justify-center text-xl mb-4 font-bold">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-heading text-slate-800 mb-3">Approved Scheme Affiliation
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Nipona's Family Daycare works directly with <strong>Community Vision Family
+                                    Daycare</strong>. Community Vision manages scheme compliance, Australian Child Care
+                                Subsidy (CCS) processing, and regular quality assurance audits.
+                            </p>
+                        </div>
+                        <div
+                            class="pt-4 border-t border-slate-200 text-xs text-slate-500 flex items-center justify-between">
+                            <span>Scheme Partner</span>
+                            <span class="font-bold text-tealBrand-700">Community Vision</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-amber-50/60 rounded-3xl p-8 border border-amber-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl mb-4 font-bold">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-heading text-slate-800 mb-3">Invoicing & Payment Schedule
+                            </h3>
+                            <ul class="text-slate-600 text-sm space-y-3 mb-4">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-envelope text-amber-500 mt-1"></i>
+                                    <span><strong>Wednesday:</strong> Statements and invoices are emailed directly to
+                                        parents showing care hours and applied subsidies.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-credit-card text-amber-500 mt-1"></i>
+                                    <span><strong>Thursday:</strong> Outstanding gap payment is automatically collected
+                                        via <strong>Direct Debit</strong> (mandatory upon enrollment).</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-amber-200/80 text-xs text-amber-800 font-medium">
+                            Automated, predictable weekly processing.
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-rose-50/60 rounded-3xl p-8 border border-rose-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-xl mb-4 font-bold">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-heading text-slate-800 mb-3">No Direct Cash Policy</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                <strong>Important Policy:</strong> Educators are strictly <em>not permitted to collect
+                                    cash or payments directly from parents</em>. All financial transactions must proceed
+                                through the official Community Vision direct debit system.
+                            </p>
+                        </div>
+                        <div
+                            class="pt-4 border-t border-rose-200 text-xs text-rose-700 font-semibold flex items-center gap-2">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <span>Strict Regulatory Compliance</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div
+                    class="mt-10 bg-slate-900 text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+                    <div class="flex items-center gap-4 text-center sm:text-left">
+                        <div
+                            class="w-12 h-12 rounded-full bg-tealBrand-500 text-white flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-heading text-lg font-bold">Have Questions About Enrollment or Direct Debit?
+                            </h4>
+                            <p class="text-slate-400 text-sm">Call Nipona directly for assistance or walk-throughs.</p>
+                        </div>
+                    </div>
+                    <a href="tel:0433409574"
+                        class="px-6 py-3 bg-amber-400 hover:bg-amber-300 text-slate-900 font-heading font-bold rounded-xl transition-all shadow-md text-nowrap">
+                        Call 0433 409 574
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. GAP FEE CALCULATOR -->
+        <section id="calculator" class="py-16 lg:py-24 bg-gradient-to-br from-tealBrand-50 via-slate-50 to-amber-50/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span
+                        class="text-tealBrand-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-white px-3 py-1 rounded-full shadow-xs border border-tealBrand-100">Interactive
+                        Estimator</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">Estimate Your
+                        Out-Of-Pocket (Gap) Fee</h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base">Use this tool to calculate your estimated weekly
+                        gap fee after Australian Child Care Subsidy (CCS).</p>
+                </div>
+
+                <div
+                    class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden grid md:grid-cols-12">
+
+                    <div class="md:col-span-7 p-6 sm:p-8 space-y-6">
+                        <h3
+                            class="text-lg font-bold font-heading text-slate-800 border-b border-slate-100 pb-3 flex items-center justify-between">
+                            <span>Estimator Parameters</span>
+                            <span class="text-xs text-tealBrand-600 font-normal">CCS Rates</span>
+                        </h3>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs sm:text-sm font-semibold text-slate-700">Estimated Daily Rate
+                                    ($)</label>
+                                <span id="dailyRateValue" class="text-sm font-bold text-tealBrand-600">$130</span>
+                            </div>
+                            <input type="range" id="dailyRate" min="90" max="200" step="5" value="130"
+                                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-tealBrand-600">
+                            <div class="flex justify-between text-xs text-slate-400 mt-1">
+                                <span>$90/day</span>
+                                <span>$200/day</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs sm:text-sm font-semibold text-slate-700">Estimated CCS Subsidy
+                                    Percentage (%)</label>
+                                <span id="ccsRateValue" class="text-sm font-bold text-amber-600">65%</span>
+                            </div>
+                            <input type="range" id="ccsRate" min="0" max="90" step="5" value="65"
+                                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                            <div class="flex justify-between text-xs text-slate-400 mt-1">
+                                <span>0% (No Subsidy)</span>
+                                <span>90% (Max CCS)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs sm:text-sm font-semibold text-slate-700 mb-2">Days of Care Per
+                                Week</label>
+                            <div class="grid grid-cols-5 gap-2" id="daysSelector">
+                                <button type="button" data-days="1"
+                                    class="day-btn py-2.5 rounded-xl border border-slate-200 font-heading font-semibold text-slate-700 hover:border-tealBrand-500 transition-all">1</button>
+                                <button type="button" data-days="2"
+                                    class="day-btn py-2.5 rounded-xl border border-slate-200 font-heading font-semibold text-slate-700 hover:border-tealBrand-500 transition-all">2</button>
+                                <button type="button" data-days="3"
+                                    class="day-btn active py-2.5 rounded-xl border-2 border-tealBrand-600 bg-tealBrand-50 font-heading font-semibold text-tealBrand-700 transition-all">3</button>
+                                <button type="button" data-days="4"
+                                    class="day-btn py-2.5 rounded-xl border border-slate-200 font-heading font-semibold text-slate-700 hover:border-tealBrand-500 transition-all">4</button>
+                                <button type="button" data-days="5"
+                                    class="day-btn py-2.5 rounded-xl border border-slate-200 font-heading font-semibold text-slate-700 hover:border-tealBrand-500 transition-all">5</button>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-400 leading-normal italic">
+                            *Disclaimer: Estimate only. Actual CCS rates and caps are determined directly by Centrelink
+                            / Services Australia based on family income and activity levels.
+                        </p>
+                    </div>
+
+                    <div
+                        class="md:col-span-5 bg-gradient-to-br from-slate-900 to-tealBrand-950 text-white p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xs uppercase tracking-wider text-tealBrand-300 font-bold mb-4">Estimated
+                                Breakdown</h4>
+
+                            <div class="space-y-4">
+                                <div
+                                    class="flex justify-between items-center text-xs sm:text-sm text-slate-300 border-b border-slate-800 pb-2">
+                                    <span>Full Fee (Before CCS):</span>
+                                    <span id="fullFeeOutput" class="font-bold text-white">$390.00 / wk</span>
+                                </div>
+
+                                <div
+                                    class="flex justify-between items-center text-xs sm:text-sm text-emerald-400 border-b border-slate-800 pb-2">
+                                    <span>Estimated CCS Covered:</span>
+                                    <span id="ccsCoveredOutput" class="font-bold">-$253.50 / wk</span>
+                                </div>
+
+                                <div class="pt-4">
+                                    <span class="block text-xs text-slate-400 font-medium">Thursday Direct Debit
+                                        Gap:</span>
+                                    <div class="text-3xl sm:text-4xl font-extrabold font-heading text-amber-400 mt-1"
+                                        id="gapFeeOutput">
+                                        $136.50 <span class="text-xs font-normal text-slate-300">/ week</span>
+                                    </div>
+                                    <span
+                                        class="inline-block mt-2 text-xs text-slate-300 bg-slate-800 px-2.5 py-1 rounded-md"
+                                        id="perDayGapOutput">
+                                        Approx. $45.50 per day gap
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-4 border-t border-slate-800 text-center">
+                            <a href="#contact"
+                                class="w-full inline-block bg-tealBrand-500 hover:bg-tealBrand-600 text-white font-heading py-3 rounded-xl shadow-md transition-colors text-sm font-semibold">
+                                Request Tour for Detailed Quote
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. REAL 5-STAR GOOGLE TESTIMONIALS -->
+        <section id="testimonials" class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span
+                        class="text-amber-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Parent
+                        Experiences</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">Verified Google Business
+                        Reviews</h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base">Read authentic 5-star feedback directly from
+                        parents in our daycare family.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Review 1 -->
+                    <div
+                        class="bg-softBackground p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-400 mb-3 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed italic mb-4">
+                                "I have been using their service for more than a year now, and I couldn’t be happier.
+                                Nipona and her family truly care for my son as if he were one of their own. They treat
+                                him with absolute love, warmth, and dedication..."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Pavithra Rajamanikam</h4>
+                                <span class="text-xs text-slate-400">Verified Parent</span>
+                            </div>
+                            <i class="fa-brands fa-google text-slate-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div
+                        class="bg-softBackground p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-400 mb-3 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed italic mb-4">
+                                "Nipona is kind, patient, and treats every child with love. The daycare is clean, safe,
+                                and feels like home. My daughter always comes home happy and learning new things. Highly
+                                recommend Nipona Family Daycare!"
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Desi Etika Sari</h4>
+                                <span class="text-xs text-slate-400">Verified Parent</span>
+                            </div>
+                            <i class="fa-brands fa-google text-slate-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div
+                        class="bg-softBackground p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-400 mb-3 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed italic mb-4">
+                                "We feel so lucky to have found Nipona’s Family Daycare! Our little one is always
+                                excited to go, and it’s clear how much love and care Nipona puts into everything she
+                                does. It feels like leaving our child with family."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Kamrul</h4>
+                                <span class="text-xs text-slate-400">Verified Parent</span>
+                            </div>
+                            <i class="fa-brands fa-google text-slate-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div
+                        class="bg-softBackground p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-400 mb-3 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed italic mb-4">
+                                "My daughter has attended Nipona’s Family Daycare for some time now. We are so grateful
+                                to have such amazing bonds with Nipona; she has supported my daughter’s needs and
+                                growth. 10/10 highly recommended."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Tanjidul Karim</h4>
+                                <span class="text-xs text-slate-400">Verified Parent</span>
+                            </div>
+                            <i class="fa-brands fa-google text-slate-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div
+                        class="bg-softBackground p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-400 mb-3 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed italic mb-4">
+                                "One of the best daycares around. Strongly recommend as my friend gave me very positive
+                                feedback. Very friendly and healthy environment makes the place even better for the
+                                kids."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Mahmud Hasan</h4>
+                                <span class="text-xs text-slate-400">Verified Parent</span>
+                            </div>
+                            <i class="fa-brands fa-google text-slate-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Review 6 -->
+                    <div
+                        class="bg-softBackground p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-400 mb-3 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed italic mb-4">
+                                "Wonderful early learning space with attentive care. Nipona ensures every child receives
+                                individualized nurture and learning opportunities every single day."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Shauna Horton</h4>
+                                <span class="text-xs text-slate-400">Verified Parent</span>
+                            </div>
+                            <i class="fa-brands fa-google text-slate-400"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 7. GOOGLE BUSINESS PHOTO GALLERY -->
+        <section id="gallery" class="py-16 lg:py-24 bg-slate-50 border-t border-slate-200/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span
+                        class="text-tealBrand-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-tealBrand-50 px-3 py-1 rounded-full border border-tealBrand-100">Explore
+                        Our Space</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">Photo Gallery & Learning
+                        Environment</h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base">Take a glimpse inside our indoor corners,
+                        outdoor activity areas, and play equipment.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item group relative rounded-3xl overflow-hidden shadow-sm border border-slate-200 bg-white cursor-pointer"
+                        data-img="https://lh3.googleusercontent.com/vp5h8r_BPURBrAa47jbO9I8Z5chPZjHps97cjpDsDHU2aa6o-_4kB8ls7MQDpWn_PpNMwEGs8_INgGcaUg=s1200"
+                        data-caption="Indoor Early Learning & Puzzle Corner">
+                        <img src="https://lh3.googleusercontent.com/vp5h8r_BPURBrAa47jbO9I8Z5chPZjHps97cjpDsDHU2aa6o-_4kB8ls7MQDpWn_PpNMwEGs8_INgGcaUg=s800"
+                            alt="Daycare Play Corner"
+                            class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/e2e8f0/475569?text=Learning+Corner';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <span class="text-white font-heading font-semibold text-sm">Indoor Early Learning &
+                                Puzzles</span>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item group relative rounded-3xl overflow-hidden shadow-sm border border-slate-200 bg-white cursor-pointer"
+                        data-img="https://lh3.googleusercontent.com/yo5aPlfWpwA5TgG_ZEzUx0CwQNprum73SPlz6nQqhH3A9mHnv7Hx14AtE-5CC8vwTdv7zIFNBM2jeHYtuQ=s1200"
+                        data-caption="Sensory & Craft Exploration Area">
+                        <img src="https://lh3.googleusercontent.com/yo5aPlfWpwA5TgG_ZEzUx0CwQNprum73SPlz6nQqhH3A9mHnv7Hx14AtE-5CC8vwTdv7zIFNBM2jeHYtuQ=s800"
+                            alt="Sensory Craft Play"
+                            class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/e2e8f0/475569?text=Craft+Exploration';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <span class="text-white font-heading font-semibold text-sm">Sensory & Craft Exploration
+                                Area</span>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item group relative rounded-3xl overflow-hidden shadow-sm border border-slate-200 bg-white cursor-pointer"
+                        data-img="https://lh3.googleusercontent.com/ToI4dX3yaVmw3eXQSoVnRLAxSaJ90IS0VdL4pcDHUIcH-igw7BCNKx7ruM3d4mUBNyp8otxhomzIGo7cMw=s1200"
+                        data-caption="Safe Outdoor Play Space">
+                        <img src="https://lh3.googleusercontent.com/ToI4dX3yaVmw3eXQSoVnRLAxSaJ90IS0VdL4pcDHUIcH-igw7BCNKx7ruM3d4mUBNyp8otxhomzIGo7cMw=s800"
+                            alt="Outdoor Activity Space"
+                            class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/e2e8f0/475569?text=Outdoor+Play';">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <span class="text-white font-heading font-semibold text-sm">Safe Outdoor Play Space</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 8. LOCATION & GOOGLE MAPS -->
+        <section id="location" class="py-16 lg:py-24 bg-white border-t border-slate-200/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span
+                        class="text-tealBrand-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-tealBrand-50 px-3 py-1 rounded-full border border-tealBrand-100">Visit
+                        Us</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">Our Location &
+                        Directions</h2>
+                    <p class="text-slate-600 mt-2 text-sm sm:text-base">Use the map for navigation and quick route
+                        planning before your daycare tour.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+                    <div class="lg:col-span-4 space-y-4">
+                        <div class="p-6 rounded-3xl border border-slate-200 bg-softBackground">
+                            <p class="text-xs font-bold uppercase text-slate-500">Exact Address</p>
+                            <p class="mt-2 font-heading text-xl text-slate-800">Nipona's Family Daycare</p>
+                            <p class="text-sm text-slate-600 mt-1">See the pinned business listing on Google Maps for
+                                current street address details.</p>
+                        </div>
+
+                        <div class="p-6 rounded-3xl border border-slate-200 bg-white">
+                            <p class="text-xs font-bold uppercase text-slate-500">Tour Visits</p>
+                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">Tours are by appointment to ensure
+                                family privacy and child safety. Please submit an inquiry first, and the full visit
+                                details will be confirmed with you.</p>
+                        </div>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=Nipona%27s+Family+Daycare"
+                            target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-tealBrand-600 hover:bg-tealBrand-700 text-white font-heading font-bold transition-colors">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            Open in Google Maps
+                        </a>
+                    </div>
+
+                    <div class="lg:col-span-8 rounded-3xl overflow-hidden border border-slate-200 shadow-sm min-h-[400px]">
+                        <iframe title="Nipona's Family Daycare Location"
+                            src="https://www.google.com/maps?q=Nipona%27s%20Family%20Daycare&output=embed"
+                            class="w-full h-full min-h-[400px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. TOUR & INQUIRY BOOKING FORM -->
+        <section id="contact" class="py-16 lg:py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+                    <div class="lg:col-span-5 space-y-8">
+                        <div>
+                            <span
+                                class="text-amber-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-amber-50 px-3 py-1 rounded-full border border-amber-100">Get
+                                In Touch</span>
+                            <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">Book a Tour or
+                                Inquire</h2>
+                            <p class="text-slate-600 mt-3 text-sm sm:text-base leading-relaxed">
+                                We would love to welcome you and your child! Fill out the form below to schedule a visit
+                                to our daycare home or check current spot availability.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-tealBrand-100 text-tealBrand-600 flex items-center justify-center shrink-0 font-bold">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 font-semibold uppercase">Direct Phone</p>
+                                    <a href="tel:0433409574"
+                                        class="text-base font-bold text-slate-800 hover:text-tealBrand-600 transition-colors">0433
+                                        409 574</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 font-bold">
+                                    <i class="fa-solid fa-building"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 font-semibold uppercase">Affiliated Scheme</p>
+                                    <p class="text-sm font-bold text-slate-800">Community Vision Family Daycare</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 font-bold">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 font-semibold uppercase">Operating Hours</p>
+                                    <p class="text-sm font-bold text-slate-800">Monday - Friday | Flexible Hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="lg:col-span-7 bg-softBackground p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-md">
+                        <form id="inquiryForm" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Parent /
+                                        Guardian Name *</label>
+                                    <input type="text" id="parentName" required placeholder="e.g. Sarah Jenkins"
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-tealBrand-500 bg-white text-sm">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Phone Number
+                                        *</label>
+                                    <input type="tel" id="parentPhone" required placeholder="e.g. 0400 000 000"
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-tealBrand-500 bg-white text-sm">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Email Address
+                                        *</label>
+                                    <input type="email" id="parentEmail" required placeholder="e.g. sarah@example.com"
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-tealBrand-500 bg-white text-sm">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Child's Age /
+                                        DOB *</label>
+                                    <input type="text" id="childAge" required placeholder="e.g. 2 years old"
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-tealBrand-500 bg-white text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Preferred Days of
+                                    Care</label>
+                                <div class="grid grid-cols-5 gap-2 pt-1">
+                                    <label
+                                        class="flex flex-col items-center p-2 rounded-xl border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 text-xs">
+                                        <input type="checkbox" value="Mon" class="accent-tealBrand-600 mb-1"> Mon
+                                    </label>
+                                    <label
+                                        class="flex flex-col items-center p-2 rounded-xl border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 text-xs">
+                                        <input type="checkbox" value="Tue" class="accent-tealBrand-600 mb-1"> Tue
+                                    </label>
+                                    <label
+                                        class="flex flex-col items-center p-2 rounded-xl border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 text-xs">
+                                        <input type="checkbox" value="Wed" class="accent-tealBrand-600 mb-1"> Wed
+                                    </label>
+                                    <label
+                                        class="flex flex-col items-center p-2 rounded-xl border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 text-xs">
+                                        <input type="checkbox" value="Thu" class="accent-tealBrand-600 mb-1"> Thu
+                                    </label>
+                                    <label
+                                        class="flex flex-col items-center p-2 rounded-xl border border-slate-200 bg-white cursor-pointer hover:bg-slate-50 text-xs">
+                                        <input type="checkbox" value="Fri" class="accent-tealBrand-600 mb-1"> Fri
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Message or
+                                    Questions</label>
+                                <textarea id="parentMessage" rows="3"
+                                    placeholder="Tell us about your child or preferred tour times..."
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-tealBrand-500 bg-white text-sm"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Preferred Contact
+                                    Method</label>
+                                <select id="contactMethod"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-tealBrand-500 bg-white text-sm">
+                                    <option value="both" selected>Both WhatsApp and Email</option>
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="email">Email</option>
+                                </select>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full py-4 bg-tealBrand-600 hover:bg-tealBrand-700 text-white font-heading font-bold text-base rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Submit Inquiry / Book Tour</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 10. FREQUENTLY ASKED QUESTIONS (FAQ) -->
+        <section id="faq" class="py-16 lg:py-24 bg-slate-50 border-t border-slate-200/80">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center mb-12">
+                    <span
+                        class="text-tealBrand-600 font-bold uppercase tracking-wider text-xs sm:text-sm bg-tealBrand-50 px-3 py-1 rounded-full border border-tealBrand-100">Helpful
+                        Information</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading text-slate-800 mt-3">Frequently Asked
+                        Questions</h2>
+                </div>
+
+                <div class="space-y-4" id="faqAccordion">
+
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                        <button
+                            class="faq-btn w-full p-5 text-left font-heading font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-base sm:text-lg">
+                            <span>How does invoicing and direct debit work?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                        </button>
+                        <div
+                            class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                            Invoices are issued every <strong>Wednesday</strong> by Community Vision Family Daycare. The
+                            remaining out-of-pocket gap fee is automatically collected via <strong>Direct Debit every
+                                Thursday</strong>. Please note that educators are strictly not eligible to accept cash
+                            payments.
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                        <button
+                            class="faq-btn w-full p-5 text-left font-heading font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-base sm:text-lg">
+                            <span>Is Australian Child Care Subsidy (CCS) available?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                        </button>
+                        <div
+                            class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                            Yes! Nipona's Family Daycare operates under the approved scheme of <strong>Community Vision
+                                Family Daycare</strong>. Eligible families can claim CCS to significantly reduce weekly
+                            fees.
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                        <button
+                            class="faq-btn w-full p-5 text-left font-heading font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50 text-base sm:text-lg">
+                            <span>What are the enrollment steps?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                        </button>
+                        <div
+                            class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                            Enrollment takes 3 simple steps: 1) Submit a tour inquiry form or call 0433 409 574. 2)
+                            Visit our daycare home environment to meet Nipona. 3) Complete official Community Vision
+                            scheme paperwork & Direct Debit setup.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-300 pt-12 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-tealBrand-500 flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-shapes"></i>
+                        </div>
+                        <span class="text-xl font-bold font-heading text-white">Nipona's Family Daycare</span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+                        Dedicated early learning and loving care in a safe home environment. Operating under Community
+                        Vision Family Daycare Scheme.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-white font-bold mb-3">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#about" class="hover:text-amber-400 transition-colors">About & Philosophy</a></li>
+                        <li><a href="#schedule" class="hover:text-amber-400 transition-colors">Daily Routine</a></li>
+                        <li><a href="#policies" class="hover:text-amber-400 transition-colors">Fee Policies</a></li>
+                        <li><a href="#calculator" class="hover:text-amber-400 transition-colors">Gap Fee Calculator</a>
+                        </li>
+                        <li><a href="#location" class="hover:text-amber-400 transition-colors">Location & Map</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-white font-bold mb-3">Contact Details</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-tealBrand-400"></i>
+                            <span>0433 409 574</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-building text-amber-400"></i>
+                            <span>Community Vision Scheme</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-calendar text-rose-400"></i>
+                            <span>Invoicing: Wednesday</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Nipona's Family Daycare. All rights reserved.</p>
+                <p>Affiliated with Community Vision Family Daycare Scheme.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX IMAGE MODAL -->
+    <div id="imageLightbox"
+        class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 hidden p-4">
+        <div class="relative max-w-4xl w-full text-center">
+            <button id="closeLightboxBtn" class="absolute -top-10 right-0 text-white text-2xl hover:text-amber-400 p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="Full Preview"
+                class="max-h-[80vh] mx-auto rounded-2xl shadow-2xl object-contain">
+            <p id="lightboxCaption" class="text-white font-heading text-base mt-4 font-semibold"></p>
+        </div>
+    </div>
+
+    <!-- FORM CONFIRMATION MODAL -->
+    <div id="confirmationModal"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-center">
+            <div
+                class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold font-heading text-slate-800 mb-2">Tour Request Submitted!</h3>
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                Thank you, <strong id="modalParentName">Parent</strong>! Nipona will contact you at <span
+                    id="modalParentPhone" class="font-semibold text-slate-800"></span> shortly to confirm your tour
+                date.
+            </p>
+            <div class="grid sm:grid-cols-2 gap-3 mb-4">
+                <a id="sendWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer"
+                    class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-heading font-bold rounded-xl transition-colors inline-flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Send on WhatsApp
+                </a>
+                <a id="sendEmailBtn" href="#"
+                    class="w-full py-3 bg-slate-800 hover:bg-slate-900 text-white font-heading font-bold rounded-xl transition-colors inline-flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-envelope"></i>
+                    Send by Email
+                </a>
+            </div>
+            <p class="text-xs text-slate-500 mb-4">Your details are prepared automatically. Tap your preferred option
+                above to send the inquiry instantly.</p>
+            <button id="closeModalBtn"
+                class="w-full py-3 bg-tealBrand-600 hover:bg-tealBrand-700 text-white font-heading font-bold rounded-xl transition-colors">
+                Close & Return
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. SCHEDULE TIMELINE DATA
+        const scheduleData = [
+            {
+                time: "8:00 AM - 9:00 AM",
+                title: "Arrival & Free Choice Play",
+                icon: "fa-sun",
+                color: "bg-amber-500",
+                bgLight: "bg-amber-50/70 border-amber-200",
+                desc: "Warm greetings as children arrive. Quiet tabletop puzzles, sensory activities, and free exploration tailored to individual interests."
+            },
+            {
+                time: "9:00 AM - 9:30 AM",
+                title: "Circle Time & Music",
+                icon: "fa-book-open",
+                color: "bg-tealBrand-500",
+                bgLight: "bg-tealBrand-50/70 border-tealBrand-200",
+                desc: "Group gathering with song, storybooks, weather discussions, and introducing the learning focus for the day."
+            },
+            {
+                time: "9:30 AM - 10:00 AM",
+                title: "Morning Snack",
+                icon: "fa-apple-whole",
+                color: "bg-rose-500",
+                bgLight: "bg-rose-50/70 border-rose-200",
+                desc: "Hand washing routines followed by healthy fruits and snacks encouraging independence."
+            },
+            {
+                time: "10:00 AM - 11:30 AM",
+                title: "Outdoor Guided Learning",
+                icon: "fa-tree",
+                color: "bg-emerald-500",
+                bgLight: "bg-emerald-50/70 border-emerald-200",
+                desc: "Outdoor motor activities, garden exploration, sandpit play, and guided arts and crafts."
+            },
+            {
+                time: "11:30 AM - 12:30 PM",
+                title: "Lunch & Hygiene",
+                icon: "fa-utensils",
+                color: "bg-sky-500",
+                bgLight: "bg-sky-50/70 border-sky-200",
+                desc: "Nutritious lunch promoting conversational social skills and personal hygiene habits."
+            },
+            {
+                time: "12:30 PM - 2:30 PM",
+                title: "Quiet Rest & Nap Time",
+                icon: "fa-bed",
+                color: "bg-indigo-500",
+                bgLight: "bg-indigo-50/70 border-indigo-200",
+                desc: "Recharging period with soothing music. Non-nappers enjoy quiet reading or drawing."
+            },
+            {
+                time: "2:30 PM - 3:30 PM",
+                title: "Afternoon Tea & Creative Play",
+                icon: "fa-palette",
+                color: "bg-purple-500",
+                bgLight: "bg-purple-50/70 border-purple-200",
+                desc: "Light afternoon snack followed by dress-up play, playdough, and expressive art."
+            },
+            {
+                time: "3:30 PM - 5:00 PM",
+                title: "Garden Play & Departure",
+                icon: "fa-house-user",
+                color: "bg-amber-600",
+                bgLight: "bg-amber-50/70 border-amber-200",
+                desc: "Late afternoon play, daily reflection, and friendly parent handovers."
+            }
+        ];
+
+        function initSchedule() {
+            const btnContainer = document.getElementById('scheduleButtons');
+            const iconEl = document.getElementById('scheduleIcon');
+            const timeEl = document.getElementById('scheduleTime');
+            const titleEl = document.getElementById('scheduleTitle');
+            const descEl = document.getElementById('scheduleDesc');
+            const cardContainer = document.getElementById('scheduleDetailCard');
+
+            scheduleData.forEach((item, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `schedule-tab px-3.5 py-2 rounded-xl text-xs font-semibold font-heading transition-all ${idx === 0
+                        ? 'bg-tealBrand-600 text-white shadow-sm'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`;
+                btn.textContent = item.time.split(' - ')[0];
+                btn.onclick = () => {
+                    document.querySelectorAll('.schedule-tab').forEach(b => {
+                        b.className = 'schedule-tab px-3.5 py-2 rounded-xl text-xs font-semibold font-heading transition-all bg-slate-100 text-slate-600 hover:bg-slate-200';
+                    });
+                    btn.className = 'schedule-tab px-3.5 py-2 rounded-xl text-xs font-semibold font-heading transition-all bg-tealBrand-600 text-white shadow-sm';
+
+                    timeEl.textContent = item.time;
+                    titleEl.textContent = item.title;
+                    descEl.textContent = item.desc;
+                    iconEl.className = `w-16 h-16 rounded-2xl ${item.color} text-white flex items-center justify-center text-3xl shadow-md shrink-0`;
+                    iconEl.innerHTML = `<i class="fa-solid ${item.icon}"></i>`;
+                    cardContainer.className = `${item.bgLight} rounded-2xl p-6 sm:p-8 border transition-all duration-300`;
+                };
+                btnContainer.appendChild(btn);
+            });
+        }
+
+        // 2. GAP ESTIMATOR
+        let selectedDays = 3;
+        function calculateGap() {
+            const dailyRate = parseFloat(document.getElementById('dailyRate').value);
+            const ccsPercent = parseFloat(document.getElementById('ccsRate').value);
+
+            const fullWeeklyFee = dailyRate * selectedDays;
+            const ccsCoveredWeekly = fullWeeklyFee * (ccsPercent / 100);
+            const weeklyGap = Math.max(0, fullWeeklyFee - ccsCoveredWeekly);
+            const dailyGap = weeklyGap / selectedDays;
+
+            document.getElementById('dailyRateValue').textContent = `$${dailyRate}`;
+            document.getElementById('ccsRateValue').textContent = `${ccsPercent}%`;
+            document.getElementById('fullFeeOutput').textContent = `$${fullWeeklyFee.toFixed(2)} / wk`;
+            document.getElementById('ccsCoveredOutput').textContent = `-$${ccsCoveredWeekly.toFixed(2)} / wk`;
+            document.getElementById('gapFeeOutput').innerHTML = `$${weeklyGap.toFixed(2)} <span class="text-xs font-normal text-slate-300">/ week</span>`;
+            document.getElementById('perDayGapOutput').textContent = `Approx. $${dailyGap.toFixed(2)} per day gap`;
+        }
+
+        function initEstimator() {
+            document.getElementById('dailyRate').addEventListener('input', calculateGap);
+            document.getElementById('ccsRate').addEventListener('input', calculateGap);
+
+            const dayBtns = document.querySelectorAll('.day-btn');
+            dayBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    dayBtns.forEach(b => {
+                        b.className = 'day-btn py-2.5 rounded-xl border border-slate-200 font-heading font-semibold text-slate-700 hover:border-tealBrand-500 transition-all';
+                    });
+                    btn.className = 'day-btn active py-2.5 rounded-xl border-2 border-tealBrand-600 bg-tealBrand-50 font-heading font-semibold text-tealBrand-700 transition-all';
+                    selectedDays = parseInt(btn.dataset.days);
+                    calculateGap();
+                });
+            });
+
+            calculateGap();
+        }
+
+        // 3. FAQ ACCORDION
+        function initFAQ() {
+            const faqBtns = document.querySelectorAll('.faq-btn');
+            faqBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const content = btn.nextElementSibling;
+                    const icon = btn.querySelector('i');
+                    const isHidden = content.classList.contains('hidden');
+
+                    document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                    document.querySelectorAll('.faq-btn i').forEach(i => i.classList.remove('rotate-180'));
+
+                    if (isHidden) {
+                        content.classList.remove('hidden');
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+        }
+
+        // 4. MOBILE NAVIGATION
+        function initMobileNav() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            const links = document.querySelectorAll('.mobile-link');
+
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+            links.forEach(l => l.addEventListener('click', () => menu.classList.add('hidden')));
+        }
+
+        // 5. LIGHTBOX & FORM MODALS
+        function initModals() {
+            // Lightbox
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const closeLightbox = document.getElementById('closeLightboxBtn');
+
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    lightboxImg.src = item.dataset.img;
+                    lightboxCaption.textContent = item.dataset.caption;
+                    lightbox.classList.remove('hidden');
+                });
+            });
+
+            closeLightbox.addEventListener('click', () => lightbox.classList.add('hidden'));
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) lightbox.classList.add('hidden');
+            });
+
+            // Form
+            const form = document.getElementById('inquiryForm');
+            const modal = document.getElementById('confirmationModal');
+            const closeModal = document.getElementById('closeModalBtn');
+            const sendWhatsAppBtn = document.getElementById('sendWhatsAppBtn');
+            const sendEmailBtn = document.getElementById('sendEmailBtn');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const parentName = document.getElementById('parentName').value.trim();
+                const parentPhone = document.getElementById('parentPhone').value.trim();
+                const parentEmail = document.getElementById('parentEmail').value.trim();
+                const childAge = document.getElementById('childAge').value.trim();
+                const parentMessage = document.getElementById('parentMessage').value.trim() || 'N/A';
+                const contactMethod = document.getElementById('contactMethod').value;
+                const selectedDays = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
+
+                const inquiryBody = [
+                    'New tour/enrollment inquiry',
+                    '',
+                    `Parent/Guardian: ${parentName}`,
+                    `Phone: ${parentPhone}`,
+                    `Email: ${parentEmail}`,
+                    `Child Age/DOB: ${childAge}`,
+                    `Preferred Care Days: ${selectedDays.length ? selectedDays.join(', ') : 'Not specified'}`,
+                    `Preferred Contact: ${contactMethod}`,
+                    '',
+                    'Message:',
+                    parentMessage
+                ].join('\n');
+
+                const emailSubject = encodeURIComponent(`Tour Inquiry - ${parentName} - Nipona's Family Daycare`);
+                const emailBody = encodeURIComponent(inquiryBody);
+                const mailtoLink = `mailto:niponafamilydaycare@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+
+                const whatsappText = encodeURIComponent(`Hi Nipona, I would like to book a daycare tour.\n\n${inquiryBody}`);
+                const whatsappLink = `https://wa.me/61433409574?text=${whatsappText}`;
+
+                sendEmailBtn.href = mailtoLink;
+                sendWhatsAppBtn.href = whatsappLink;
+
+                if (contactMethod === 'email') {
+                    window.location.href = mailtoLink;
+                } else if (contactMethod === 'whatsapp') {
+                    window.open(whatsappLink, '_blank', 'noopener');
+                } else {
+                    window.open(whatsappLink, '_blank', 'noopener');
+                    window.location.href = mailtoLink;
+                }
+
+                document.getElementById('modalParentName').textContent = parentName;
+                document.getElementById('modalParentPhone').textContent = parentPhone;
+                modal.classList.remove('hidden');
+                form.reset();
+            });
+
+            closeModal.addEventListener('click', () => modal.classList.add('hidden'));
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initSchedule();
+            initEstimator();
+            initFAQ();
+            initMobileNav();
+            initModals();
+        });
+    </script>
+</body>
+
+</html>
