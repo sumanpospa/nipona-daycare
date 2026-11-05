@@ -1236,6 +1236,7 @@
                     Send by Email
                 </a>
             </div>
+            <p id="emailDeliveryStatus" class="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-3 hidden"></p>
             <p class="text-xs text-slate-500 mb-4">Your details are prepared automatically. Tap your preferred option
                 above to send the inquiry instantly.</p>
             <button id="closeModalBtn"
@@ -1442,8 +1443,40 @@
             const closeModal = document.getElementById('closeModalBtn');
             const sendWhatsAppBtn = document.getElementById('sendWhatsAppBtn');
             const sendEmailBtn = document.getElementById('sendEmailBtn');
+            const emailDeliveryStatus = document.getElementById('emailDeliveryStatus');
+            const submitBtn = form.querySelector('button[type="submit"]');
 
-            form.addEventListener('submit', (e) => {
+            async function sendInquiryEmail(parentName, parentPhone, parentEmail, childAge, selectedDays, contactMethod, parentMessage) {
+                const endpoint = 'https://formsubmit.co/ajax/niponaferdous@gmail.com';
+                const payload = {
+                    _subject: `Tour Inquiry - ${parentName} - Nipona's Family Daycare`,
+                    _template: 'table',
+                    _captcha: 'false',
+                    _replyto: parentEmail,
+                    'Parent / Guardian Name': parentName,
+                    'Phone Number': parentPhone,
+                    'Email': parentEmail,
+                    "Child's Age / DOB": childAge,
+                    'Preferred Care Days': selectedDays.length ? selectedDays.join(', ') : 'Not specified',
+                    'Preferred Contact Method': contactMethod,
+                    'Message': parentMessage,
+                    'Submission Source': 'Website form'
+                };
+
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json().catch(() => null);
+                return response.ok && (!result || result.success === 'true' || result.success === true);
+            }
+
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const parentName = document.getElementById('parentName').value.trim();
@@ -1478,19 +1511,52 @@
                 sendEmailBtn.href = mailtoLink;
                 sendWhatsAppBtn.href = whatsappLink;
 
-                if (contactMethod === 'email') {
-                    window.location.href = mailtoLink;
-                } else if (contactMethod === 'whatsapp') {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+
+                let emailSent = false;
+                emailDeliveryStatus.classList.add('hidden');
+                emailDeliveryStatus.textContent = '';
+
+                if (contactMethod === 'email' || contactMethod === 'both') {
+                    try {
+                        emailSent = await sendInquiryEmail(
+                            parentName,
+                            parentPhone,
+                            parentEmail,
+                            childAge,
+                            selectedDays,
+                            contactMethod,
+                            parentMessage
+                        );
+                    } catch (error) {
+                        emailSent = false;
+                    }
+                }
+
+                if (contactMethod === 'whatsapp') {
                     window.open(whatsappLink, '_blank', 'noopener');
                 } else {
                     window.open(whatsappLink, '_blank', 'noopener');
-                    window.location.href = mailtoLink;
+                }
+
+                if (contactMethod === 'email' || contactMethod === 'both') {
+                    emailDeliveryStatus.classList.remove('hidden');
+                    if (emailSent) {
+                        emailDeliveryStatus.className = 'text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-3';
+                        emailDeliveryStatus.textContent = 'Email inquiry sent successfully to niponaferdous@gmail.com.';
+                    } else {
+                        emailDeliveryStatus.className = 'text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3';
+                        emailDeliveryStatus.textContent = 'Automatic email send was not confirmed. Please tap "Send by Email" to send via your mail app.';
+                    }
                 }
 
                 document.getElementById('modalParentName').textContent = parentName;
                 document.getElementById('modalParentPhone').textContent = parentPhone;
                 modal.classList.remove('hidden');
                 form.reset();
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
             });
 
             closeModal.addEventListener('click', () => modal.classList.add('hidden'));
