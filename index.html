@@ -1557,8 +1557,8 @@
                 if (contactMethod === 'email' || contactMethod === 'both') {
                     emailDeliveryStatus.classList.remove('hidden');
                     if (emailSent) {
-                        emailDeliveryStatus.className = 'text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-3';
-                        emailDeliveryStatus.textContent = 'Email inquiry has been submitted in the background to niponaferdous@gmail.com.';
+                        emailDeliveryStatus.className = 'text-xs text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-3 py-2 mb-3';
+                        emailDeliveryStatus.textContent = 'Email inquiry submitted to delivery provider for niponaferdous@gmail.com. If it does not arrive, tap "Send by Email" and send manually.';
                     } else {
                         emailDeliveryStatus.className = 'text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3';
                         emailDeliveryStatus.textContent = 'Background email submission failed. Please tap "Send by Email" to send via your mail app.';
