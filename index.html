@@ -1446,9 +1446,24 @@
             const emailDeliveryStatus = document.getElementById('emailDeliveryStatus');
             const submitBtn = form.querySelector('button[type="submit"]');
 
-            async function sendInquiryEmail(parentName, parentPhone, parentEmail, childAge, selectedDays, contactMethod, parentMessage) {
-                const endpoint = 'https://formsubmit.co/ajax/niponaferdous@gmail.com';
-                const payload = {
+            function sendInquiryEmail(parentName, parentPhone, parentEmail, childAge, selectedDays, contactMethod, parentMessage) {
+                const targetFrameId = 'emailTransportFrame';
+                let transportFrame = document.getElementById(targetFrameId);
+                if (!transportFrame) {
+                    transportFrame = document.createElement('iframe');
+                    transportFrame.id = targetFrameId;
+                    transportFrame.name = targetFrameId;
+                    transportFrame.className = 'hidden';
+                    document.body.appendChild(transportFrame);
+                }
+
+                const formTransport = document.createElement('form');
+                formTransport.method = 'POST';
+                formTransport.action = 'https://formsubmit.co/niponaferdous@gmail.com';
+                formTransport.target = targetFrameId;
+                formTransport.className = 'hidden';
+
+                const formFields = {
                     _subject: `Tour Inquiry - ${parentName} - Nipona's Family Daycare`,
                     _template: 'table',
                     _captcha: 'false',
@@ -1463,17 +1478,18 @@
                     'Submission Source': 'Website form'
                 };
 
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
+                Object.entries(formFields).forEach(([key, value]) => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = value;
+                    formTransport.appendChild(input);
                 });
 
-                const result = await response.json().catch(() => null);
-                return response.ok && (!result || result.success === 'true' || result.success === true);
+                document.body.appendChild(formTransport);
+                formTransport.submit();
+                formTransport.remove();
+                return true;
             }
 
             form.addEventListener('submit', async (e) => {
@@ -1520,7 +1536,7 @@
 
                 if (contactMethod === 'email' || contactMethod === 'both') {
                     try {
-                        emailSent = await sendInquiryEmail(
+                        emailSent = sendInquiryEmail(
                             parentName,
                             parentPhone,
                             parentEmail,
@@ -1542,11 +1558,10 @@
                     emailDeliveryStatus.classList.remove('hidden');
                     if (emailSent) {
                         emailDeliveryStatus.className = 'text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 mb-3';
-                        emailDeliveryStatus.textContent = 'Email inquiry sent successfully to niponaferdous@gmail.com.';
+                        emailDeliveryStatus.textContent = 'Email inquiry has been submitted in the background to niponaferdous@gmail.com.';
                     } else {
                         emailDeliveryStatus.className = 'text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3';
-                        emailDeliveryStatus.textContent = 'Automatic email send was not confirmed. Opening your mail app now as backup. Also check inbox/spam for FormSubmit activation email and confirm it once.';
-                        window.location.href = mailtoLink;
+                        emailDeliveryStatus.textContent = 'Background email submission failed. Please tap "Send by Email" to send via your mail app.';
                     }
                 }
 
