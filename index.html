@@ -1547,7 +1547,8 @@
                         emailDeliveryStatus.textContent = 'Email inquiry sent successfully to niponaferdous@gmail.com.';
                     } else {
                         emailDeliveryStatus.className = 'text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3';
-                        emailDeliveryStatus.textContent = 'Automatic email send was not confirmed. Please tap "Send by Email" to send via your mail app.';
+                        emailDeliveryStatus.textContent = 'Automatic email send was not confirmed. Opening your mail app now as backup. Also check inbox/spam for FormSubmit activation email and confirm it once.';
+                        window.location.href = mailtoLink;
                     }
                 }
 
