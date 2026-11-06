@@ -16,6 +16,31 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Analytics: replace with your real GA4 Measurement ID -->
+    <script>
+        const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+
+        function initAnalytics() {
+            if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') return;
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+            document.head.appendChild(script);
+
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () { dataLayer.push(arguments); };
+            gtag('js', new Date());
+            gtag('config', GA_MEASUREMENT_ID);
+        }
+
+        function trackEvent(eventName, params = {}) {
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', eventName, params);
+            }
+        }
+    </script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -111,7 +136,7 @@
 
             <!-- Phone CTA & Booking Button -->
             <div class="hidden lg:flex items-center gap-4">
-                <a href="tel:0433409574"
+                <a href="tel:0433409574" data-track="call_click" data-track-location="header_phone"
                     class="flex items-center gap-2 text-slate-700 hover:text-tealBrand-600 font-semibold text-sm">
                     <div
                         class="w-9 h-9 rounded-full bg-tealBrand-50 text-tealBrand-600 flex items-center justify-center">
@@ -119,7 +144,7 @@
                     </div>
                     <span>0433 409 574</span>
                 </a>
-                <a href="#contact"
+                <a href="#contact" data-track="book_tour_click" data-track-location="header_book_tour"
                     class="bg-gradient-to-r from-tealBrand-600 to-tealBrand-500 hover:from-tealBrand-700 hover:to-tealBrand-600 text-white font-heading px-5 py-2.5 rounded-full shadow-md shadow-tealBrand-500/20 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
                     Book a Tour
                 </a>
@@ -234,17 +259,17 @@
 
                         <!-- Hero CTA Buttons -->
                         <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2">
-                            <a href="#contact"
+                            <a href="#contact" data-track="book_tour_click" data-track-location="hero_primary"
                                 class="w-full sm:w-auto px-8 py-4 bg-tealBrand-600 hover:bg-tealBrand-700 text-white font-heading text-lg rounded-2xl shadow-lg shadow-tealBrand-600/30 hover:shadow-xl transition-all duration-300 text-center flex items-center justify-center gap-3">
                                 <span>Book a Free Daycare Tour</span>
                                 <i class="fa-solid fa-arrow-right text-sm"></i>
                             </a>
-                            <a href="tel:0433409574"
+                            <a href="tel:0433409574" data-track="call_click" data-track-location="hero_call"
                                 class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 font-heading text-lg rounded-2xl border border-slate-200 shadow-sm hover:shadow transition-all duration-300 text-center flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-phone text-tealBrand-500"></i>
                                 <span>Call Nipona</span>
                             </a>
-                            <a href="#calculator"
+                            <a href="#calculator" data-track="gap_estimator_click" data-track-location="hero_calculator"
                                 class="w-full sm:w-auto px-8 py-4 bg-amber-50 hover:bg-amber-100 text-slate-700 font-heading text-lg rounded-2xl border border-amber-200 shadow-sm hover:shadow transition-all duration-300 text-center flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-calculator text-amber-500"></i>
                                 <span>Estimate Gap Fee</span>
@@ -256,15 +281,15 @@
                         <div class="lg:hidden bg-white/90 border border-slate-200 rounded-2xl p-3 shadow-sm">
                             <p class="text-[11px] uppercase tracking-wide text-slate-500 font-semibold mb-2">Quick Parent Actions</p>
                             <div class="grid grid-cols-3 gap-2 text-xs font-semibold">
-                                <a href="tel:0433409574" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 flex flex-col items-center gap-1">
+                                <a href="tel:0433409574" data-track="call_click" data-track-location="hero_quick_call" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 flex flex-col items-center gap-1">
                                     <i class="fa-solid fa-phone text-tealBrand-500"></i>
                                     <span>Call</span>
                                 </a>
-                                <a href="https://wa.me/61433409574" target="_blank" rel="noopener noreferrer" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 flex flex-col items-center gap-1">
+                                <a href="https://wa.me/61433409574" target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="hero_quick_whatsapp" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 flex flex-col items-center gap-1">
                                     <i class="fa-brands fa-whatsapp text-emerald-500"></i>
                                     <span>WhatsApp</span>
                                 </a>
-                                <a href="#contact" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 flex flex-col items-center gap-1">
+                                <a href="#contact" data-track="book_tour_click" data-track-location="hero_quick_book" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 flex flex-col items-center gap-1">
                                     <i class="fa-solid fa-calendar-check text-amber-500"></i>
                                     <span>Book</span>
                                 </a>
@@ -1129,6 +1154,7 @@
                             </div>
 
                             <button type="submit"
+                                data-track="form_submit_click" data-track-location="contact_form"
                                 class="w-full py-4 bg-tealBrand-600 hover:bg-tealBrand-700 text-white font-heading font-bold text-base rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-paper-plane"></i>
                                 <span>Submit Inquiry / Book Tour</span>
@@ -1493,7 +1519,18 @@
             links.forEach(l => l.addEventListener('click', () => menu.classList.add('hidden')));
         }
 
-        // 5. LIGHTBOX & FORM MODALS
+        // 5. CONVERSION TRACKING
+        function initConversionTracking() {
+            document.querySelectorAll('[data-track]').forEach((el) => {
+                el.addEventListener('click', () => {
+                    trackEvent(el.dataset.track, {
+                        location: el.dataset.trackLocation || 'unknown'
+                    });
+                });
+            });
+        }
+
+        // 6. LIGHTBOX & FORM MODALS
         function initModals() {
             // Lightbox
             const lightbox = document.getElementById('imageLightbox');
@@ -1534,6 +1571,11 @@
                 const contactMethod = document.getElementById('contactMethod').value;
                 const selectedDays = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
 
+                trackEvent('tour_inquiry_submit', {
+                    contact_method: contactMethod,
+                    selected_days_count: selectedDays.length
+                });
+
                 const inquiryBody = [
                     'New tour/enrollment inquiry',
                     '',
@@ -1567,6 +1609,9 @@
 
                 if (contactMethod === 'whatsapp' || contactMethod === 'both') {
                     window.open(whatsappLink, '_blank', 'noopener');
+                    trackEvent('whatsapp_opened_from_form', {
+                        contact_method: contactMethod
+                    });
                 }
 
                 if (contactMethod === 'email' || contactMethod === 'both') {
@@ -1574,6 +1619,10 @@
                     if (!gmailWindow) {
                         window.location.href = mailtoLink;
                     }
+
+                    trackEvent('email_draft_opened_from_form', {
+                        contact_method: contactMethod
+                    });
 
                     emailDeliveryStatus.classList.remove('hidden');
                     emailDeliveryStatus.className = 'text-xs text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-3 py-2 mb-3';
@@ -1583,6 +1632,9 @@
                 document.getElementById('modalParentName').textContent = parentName;
                 document.getElementById('modalParentPhone').textContent = parentPhone;
                 modal.classList.remove('hidden');
+                trackEvent('tour_inquiry_modal_shown', {
+                    contact_method: contactMethod
+                });
                 form.reset();
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
@@ -1592,10 +1644,12 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            initAnalytics();
             initSchedule();
             initEstimator();
             initFAQ();
             initMobileNav();
+            initConversionTracking();
             initModals();
         });
     </script>
