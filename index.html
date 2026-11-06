@@ -1446,53 +1446,7 @@
             const emailDeliveryStatus = document.getElementById('emailDeliveryStatus');
             const submitBtn = form.querySelector('button[type="submit"]');
 
-            function sendInquiryEmail(parentName, parentPhone, parentEmail, childAge, selectedDays, contactMethod, parentMessage) {
-                const targetFrameId = 'emailTransportFrame';
-                let transportFrame = document.getElementById(targetFrameId);
-                if (!transportFrame) {
-                    transportFrame = document.createElement('iframe');
-                    transportFrame.id = targetFrameId;
-                    transportFrame.name = targetFrameId;
-                    transportFrame.className = 'hidden';
-                    document.body.appendChild(transportFrame);
-                }
-
-                const formTransport = document.createElement('form');
-                formTransport.method = 'POST';
-                formTransport.action = 'https://formsubmit.co/niponaferdous@gmail.com';
-                formTransport.target = targetFrameId;
-                formTransport.className = 'hidden';
-
-                const formFields = {
-                    _subject: `Tour Inquiry - ${parentName} - Nipona's Family Daycare`,
-                    _template: 'table',
-                    _captcha: 'false',
-                    _replyto: parentEmail,
-                    'Parent / Guardian Name': parentName,
-                    'Phone Number': parentPhone,
-                    'Email': parentEmail,
-                    "Child's Age / DOB": childAge,
-                    'Preferred Care Days': selectedDays.length ? selectedDays.join(', ') : 'Not specified',
-                    'Preferred Contact Method': contactMethod,
-                    'Message': parentMessage,
-                    'Submission Source': 'Website form'
-                };
-
-                Object.entries(formFields).forEach(([key, value]) => {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = key;
-                    input.value = value;
-                    formTransport.appendChild(input);
-                });
-
-                document.body.appendChild(formTransport);
-                formTransport.submit();
-                formTransport.remove();
-                return true;
-            }
-
-            form.addEventListener('submit', async (e) => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
 
                 const parentName = document.getElementById('parentName').value.trim();
@@ -1520,6 +1474,7 @@
                 const emailSubject = encodeURIComponent(`Tour Inquiry - ${parentName} - Nipona's Family Daycare`);
                 const emailBody = encodeURIComponent(inquiryBody);
                 const mailtoLink = `mailto:niponaferdous@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+                const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=niponaferdous@gmail.com&su=${emailSubject}&body=${emailBody}`;
 
                 const whatsappText = encodeURIComponent(`Hi Nipona, I would like to book a daycare tour.\n\n${inquiryBody}`);
                 const whatsappLink = `https://wa.me/61433409574?text=${whatsappText}`;
@@ -1530,39 +1485,22 @@
                 submitBtn.disabled = true;
                 submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
 
-                let emailSent = false;
                 emailDeliveryStatus.classList.add('hidden');
                 emailDeliveryStatus.textContent = '';
-
-                if (contactMethod === 'email' || contactMethod === 'both') {
-                    try {
-                        emailSent = sendInquiryEmail(
-                            parentName,
-                            parentPhone,
-                            parentEmail,
-                            childAge,
-                            selectedDays,
-                            contactMethod,
-                            parentMessage
-                        );
-                    } catch (error) {
-                        emailSent = false;
-                    }
-                }
 
                 if (contactMethod === 'whatsapp' || contactMethod === 'both') {
                     window.open(whatsappLink, '_blank', 'noopener');
                 }
 
                 if (contactMethod === 'email' || contactMethod === 'both') {
-                    emailDeliveryStatus.classList.remove('hidden');
-                    if (emailSent) {
-                        emailDeliveryStatus.className = 'text-xs text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-3 py-2 mb-3';
-                        emailDeliveryStatus.textContent = 'Email inquiry submitted to delivery provider for niponaferdous@gmail.com. If it does not arrive, tap "Send by Email" and send manually.';
-                    } else {
-                        emailDeliveryStatus.className = 'text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3';
-                        emailDeliveryStatus.textContent = 'Background email submission failed. Please tap "Send by Email" to send via your mail app.';
+                    const gmailWindow = window.open(gmailLink, '_blank', 'noopener');
+                    if (!gmailWindow) {
+                        window.location.href = mailtoLink;
                     }
+
+                    emailDeliveryStatus.classList.remove('hidden');
+                    emailDeliveryStatus.className = 'text-xs text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-3 py-2 mb-3';
+                    emailDeliveryStatus.textContent = 'Email draft opened. Please press Send in your email app/tab to complete the inquiry.';
                 }
 
                 document.getElementById('modalParentName').textContent = parentName;
