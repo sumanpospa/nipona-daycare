@@ -16,23 +16,13 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Analytics: replace with your real GA4 Measurement ID -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SM4CSV2XTB"></script>
     <script>
-        const GA_MEASUREMENT_ID = 'G-SM4CSV2XTB';
-
-        function initAnalytics() {
-            if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') return;
-
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-            document.head.appendChild(script);
-
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function () { dataLayer.push(arguments); };
-            gtag('js', new Date());
-            gtag('config', GA_MEASUREMENT_ID);
-        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-SM4CSV2XTB');
 
         function trackEvent(eventName, params = {}) {
             if (typeof window.gtag === 'function') {
@@ -1644,7 +1634,6 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            initAnalytics();
             initSchedule();
             initEstimator();
             initFAQ();
