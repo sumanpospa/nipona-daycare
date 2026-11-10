@@ -1151,8 +1151,6 @@
                                 <span>Submit Inquiry / Book Tour</span>
                             </button>
 
-                            <p id="formStatus" class="hidden text-sm rounded-xl px-4 py-3 border"></p>
-
                             <p class="text-xs text-slate-500 leading-relaxed">By submitting this form, you consent to
                                 Nipona's Family Daycare using your details to respond to your inquiry. We only collect
                                 the information needed to contact you about daycare care and tour availability.</p>
@@ -1295,6 +1293,24 @@
             <img id="lightboxImg" src="" alt="Full Preview"
                 class="max-h-[80vh] mx-auto rounded-2xl shadow-2xl object-contain">
             <p id="lightboxCaption" class="text-white font-heading text-base mt-4 font-semibold"></p>
+        </div>
+    </div>
+
+    <!-- SUBMISSION TOAST MESSAGE -->
+    <div id="submitToast"
+        class="fixed top-6 right-4 left-4 sm:left-auto sm:w-[420px] bg-white border border-emerald-200 rounded-2xl shadow-2xl p-4 z-50 hidden">
+        <div class="flex items-start gap-3">
+            <div id="submitToastIcon"
+                class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="flex-1">
+                <p id="submitToastMessage" class="text-sm font-semibold text-slate-800">Your inquiry was submitted successfully.</p>
+                <p class="text-xs text-slate-500 mt-1">Nipona will contact you shortly.</p>
+            </div>
+            <button id="closeToastBtn" class="text-slate-400 hover:text-slate-600" aria-label="Close message">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
     </div>
 
@@ -1512,14 +1528,38 @@
 
             // Form
             const form = document.getElementById('inquiryForm');
-            const formStatus = document.getElementById('formStatus');
             const submitBtn = form.querySelector('button[type="submit"]');
+            const submitToast = document.getElementById('submitToast');
+            const submitToastMessage = document.getElementById('submitToastMessage');
+            const submitToastIcon = document.getElementById('submitToastIcon');
+            const closeToastBtn = document.getElementById('closeToastBtn');
+            let toastTimer;
+
+            const showSubmitToast = (message, isError = false) => {
+                if (toastTimer) clearTimeout(toastTimer);
+
+                submitToastMessage.textContent = message;
+
+                if (isError) {
+                    submitToast.className = 'fixed top-6 right-4 left-4 sm:left-auto sm:w-[420px] bg-white border border-rose-200 rounded-2xl shadow-2xl p-4 z-50';
+                    submitToastIcon.className = 'w-9 h-9 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0';
+                    submitToastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
+                } else {
+                    submitToast.className = 'fixed top-6 right-4 left-4 sm:left-auto sm:w-[420px] bg-white border border-emerald-200 rounded-2xl shadow-2xl p-4 z-50';
+                    submitToastIcon.className = 'w-9 h-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0';
+                    submitToastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                }
+
+                submitToast.classList.remove('hidden');
+                toastTimer = setTimeout(() => {
+                    submitToast.classList.add('hidden');
+                }, 5000);
+            };
+
+            closeToastBtn.addEventListener('click', () => submitToast.classList.add('hidden'));
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-
-                formStatus.classList.add('hidden');
-                formStatus.textContent = '';
 
                 const parentName = document.getElementById('parentName').value.trim();
                 const contactMethod = document.getElementById('contactMethod').value;
@@ -1550,18 +1590,14 @@
                         throw new Error('Formspree request failed');
                     }
 
-                    formStatus.className = 'text-sm rounded-xl px-4 py-3 border bg-emerald-50 border-emerald-200 text-emerald-800';
-                    formStatus.textContent = 'Thanks! Your inquiry has been sent successfully. Nipona will contact you soon.';
-                    formStatus.classList.remove('hidden');
+                    showSubmitToast('Your inquiry was submitted successfully. Nipona will contact you shortly.');
                     form.reset();
 
                     trackEvent('tour_inquiry_submit_success', {
                         contact_method: contactMethod
                     });
                 } catch (error) {
-                    formStatus.className = 'text-sm rounded-xl px-4 py-3 border bg-rose-50 border-rose-200 text-rose-800';
-                    formStatus.textContent = 'Sorry, we could not send your inquiry right now. Please try again, call 0433 409 574, or use WhatsApp.';
-                    formStatus.classList.remove('hidden');
+                    showSubmitToast('Sorry, we could not send your inquiry. Please try again or call 0433 409 574.', true);
 
                     trackEvent('tour_inquiry_submit_error', {
                         contact_method: contactMethod
