@@ -1138,7 +1138,7 @@
                                     Method</label>
                                 <select id="contactMethod"
                                     class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-tealBrand-500 bg-white text-sm">
-                                    <option value="both" selected>Both WhatsApp and Email</option>
+                                    <option value="both" selected>Both WhatsApp and Email (opens both)</option>
                                     <option value="whatsapp">WhatsApp</option>
                                     <option value="email">Email</option>
                                 </select>
@@ -1600,24 +1600,24 @@
                 emailDeliveryStatus.classList.add('hidden');
                 emailDeliveryStatus.textContent = '';
 
-                emailDeliveryStatus.classList.remove('hidden');
-                emailDeliveryStatus.className = 'text-xs text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-3 py-2 mb-3';
                 if (contactMethod === 'whatsapp') {
-                    emailDeliveryStatus.textContent = 'Your inquiry is ready. Tap "Send on WhatsApp" to send now.';
-                } else if (contactMethod === 'email') {
-                    sendEmailBtn.href = gmailLink;
-                    emailDeliveryStatus.textContent = 'Your inquiry is ready. Tap "Send by Email" and press Send in your email app/tab.';
-                } else {
-                    sendEmailBtn.href = gmailLink;
-                    emailDeliveryStatus.textContent = 'Your inquiry is ready. Choose WhatsApp or Email below to send now.';
+                    trackEvent('whatsapp_opened_from_form', { contact_method: contactMethod });
+                    window.location.href = whatsappLink;
+                    return;
                 }
 
-                document.getElementById('modalParentName').textContent = parentName;
-                document.getElementById('modalParentPhone').textContent = parentPhone;
-                modal.classList.remove('hidden');
-                trackEvent('tour_inquiry_modal_shown', {
-                    contact_method: contactMethod
-                });
+                if (contactMethod === 'email') {
+                    trackEvent('email_draft_opened_from_form', { contact_method: contactMethod });
+                    window.location.href = gmailLink;
+                    return;
+                }
+
+                // Both: open WhatsApp and Email immediately from one submit action
+                trackEvent('whatsapp_opened_from_form', { contact_method: contactMethod });
+                trackEvent('email_draft_opened_from_form', { contact_method: contactMethod });
+                window.open(whatsappLink, '_blank', 'noopener');
+                window.location.href = gmailLink;
+
                 form.reset();
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
