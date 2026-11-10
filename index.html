@@ -1600,14 +1600,22 @@
                 emailDeliveryStatus.classList.add('hidden');
                 emailDeliveryStatus.textContent = '';
 
+                const finalizeSubmission = () => {
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                };
+
                 if (contactMethod === 'whatsapp') {
                     trackEvent('whatsapp_opened_from_form', { contact_method: contactMethod });
+                    finalizeSubmission();
                     window.location.href = whatsappLink;
                     return;
                 }
 
                 if (contactMethod === 'email') {
                     trackEvent('email_draft_opened_from_form', { contact_method: contactMethod });
+                    finalizeSubmission();
                     window.location.href = gmailLink;
                     return;
                 }
@@ -1615,12 +1623,9 @@
                 // Both: open WhatsApp and Email immediately from one submit action
                 trackEvent('whatsapp_opened_from_form', { contact_method: contactMethod });
                 trackEvent('email_draft_opened_from_form', { contact_method: contactMethod });
+                finalizeSubmission();
                 window.open(whatsappLink, '_blank', 'noopener');
                 window.location.href = gmailLink;
-
-                form.reset();
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
             });
 
             sendWhatsAppBtn.addEventListener('click', () => {
