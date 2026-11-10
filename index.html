@@ -1316,7 +1316,7 @@
                     <i class="fa-brands fa-whatsapp"></i>
                     Send on WhatsApp
                 </a>
-                <a id="sendEmailBtn" href="#"
+                <a id="sendEmailBtn" href="#" target="_blank" rel="noopener noreferrer"
                     class="w-full py-3 bg-slate-800 hover:bg-slate-900 text-white font-heading font-bold rounded-xl transition-colors inline-flex items-center justify-center gap-2">
                     <i class="fa-solid fa-envelope"></i>
                     Send by Email
@@ -1550,6 +1550,7 @@
             const sendEmailBtn = document.getElementById('sendEmailBtn');
             const emailDeliveryStatus = document.getElementById('emailDeliveryStatus');
             const submitBtn = form.querySelector('button[type="submit"]');
+            let lastSubmittedContactMethod = 'both';
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -1560,6 +1561,7 @@
                 const childAge = document.getElementById('childAge').value.trim();
                 const parentMessage = document.getElementById('parentMessage').value.trim() || 'N/A';
                 const contactMethod = document.getElementById('contactMethod').value;
+                lastSubmittedContactMethod = contactMethod;
                 const selectedDays = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
 
                 trackEvent('tour_inquiry_submit', {
@@ -1598,26 +1600,16 @@
                 emailDeliveryStatus.classList.add('hidden');
                 emailDeliveryStatus.textContent = '';
 
-                if (contactMethod === 'whatsapp' || contactMethod === 'both') {
-                    window.open(whatsappLink, '_blank', 'noopener');
-                    trackEvent('whatsapp_opened_from_form', {
-                        contact_method: contactMethod
-                    });
-                }
-
-                if (contactMethod === 'email' || contactMethod === 'both') {
-                    const gmailWindow = window.open(gmailLink, '_blank', 'noopener');
-                    if (!gmailWindow) {
-                        window.location.href = mailtoLink;
-                    }
-
-                    trackEvent('email_draft_opened_from_form', {
-                        contact_method: contactMethod
-                    });
-
-                    emailDeliveryStatus.classList.remove('hidden');
-                    emailDeliveryStatus.className = 'text-xs text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-3 py-2 mb-3';
-                    emailDeliveryStatus.textContent = 'Email draft opened. Please press Send in your email app/tab to complete the inquiry.';
+                emailDeliveryStatus.classList.remove('hidden');
+                emailDeliveryStatus.className = 'text-xs text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-3 py-2 mb-3';
+                if (contactMethod === 'whatsapp') {
+                    emailDeliveryStatus.textContent = 'Your inquiry is ready. Tap "Send on WhatsApp" to send now.';
+                } else if (contactMethod === 'email') {
+                    sendEmailBtn.href = gmailLink;
+                    emailDeliveryStatus.textContent = 'Your inquiry is ready. Tap "Send by Email" and press Send in your email app/tab.';
+                } else {
+                    sendEmailBtn.href = gmailLink;
+                    emailDeliveryStatus.textContent = 'Your inquiry is ready. Choose WhatsApp or Email below to send now.';
                 }
 
                 document.getElementById('modalParentName').textContent = parentName;
@@ -1629,6 +1621,18 @@
                 form.reset();
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+            });
+
+            sendWhatsAppBtn.addEventListener('click', () => {
+                trackEvent('whatsapp_opened_from_form', {
+                    contact_method: lastSubmittedContactMethod
+                });
+            });
+
+            sendEmailBtn.addEventListener('click', () => {
+                trackEvent('email_draft_opened_from_form', {
+                    contact_method: lastSubmittedContactMethod
+                });
             });
 
             closeModal.addEventListener('click', () => modal.classList.add('hidden'));
